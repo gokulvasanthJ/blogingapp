@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../App';
 import axios from 'axios';
 import {toast } from 'react-toastify';
+import CheckBox from './Common/CheckBox';
 
 
 function ManageBlogs() {
@@ -20,13 +21,14 @@ function ManageBlogs() {
       let res = await axios.get(`${API_URL}`)
       if (res.status === 200) {
         setBlogs(res.data)
-        toast.success("Blogs Fetched successfully")
+        toast.success("Blogs Fetched successfully") //Its needed uncomment this
       }
     } catch (error) {
       alert(error)
     }
 
   }
+
 
   let handleDelete = async(id)=>{
     try {
@@ -40,13 +42,25 @@ function ManageBlogs() {
     }
   }
 
+  let handleStatusChange = async(id,status)=>{
+    try{
+      let res = await axios.put(`${API_URL}/${id}`,{
+      active_flag:status})
+      if (res. status ===200){
+        getData()
+      }
+    } catch (error){
+      alert(error)}
+    }
+  
+
   useEffect(() => {
     getData()
   }, [])
 
 
 
-  return <>
+  return <div className="main-content">
     <Table striped bordered hover size="sm">
       <thead>
         <tr>
@@ -65,13 +79,13 @@ function ManageBlogs() {
             <td>{e.title}</td>
             <td><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus pariatur laboriosam fugiat quidem odio totam in earum reiciendis, ipsa sunt tempore. Accusamus, nobis ut in quibusdam laborum unde. Soluta, incidunt?</div></td>
             <td><Image imagUrl={e.imagUrl} /></td>
-            <td><CheckBox id={e.id} status={e.active_flag}/></td>
+            <td><CheckBox id={e.id} status={e.active_flag} onStatusChange={handleStatusChange}/></td>
             <td> {<Action id={e.id} onDelete={handleDelete} />}</td>
           </tr>
         })}
       </tbody>
     </Table>
-  </>
+  </div>
 }
 
 export default ManageBlogs
@@ -100,11 +114,11 @@ function Action({ id, onDelete }) {
   </>
 }
 
-function CheckBox(id,status){
-  return<>
-  <label class="switch">
-  <input type="checkbox"/>
-  <span class="slider round"></span>
-</label>
-</>
-}
+// function CheckBox({id,status,onStatusChange}){
+//   return<>
+//   <label class="switch">
+//   <input type="checkbox" checked={status}  onChange={()=>onStatusChange(id,!status)}/>
+//   <span class="slider round"></span>
+// </label>
+// </>
+// }
