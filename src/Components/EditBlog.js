@@ -1,3 +1,5 @@
+      /*eslint-disable*/
+
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -42,7 +44,6 @@ function EditBlog() {
     enableReinitialize: true,
     validationSchema: Yup.object({
       title: Yup.string().min(2, 'Too Short').max(24, 'Too Long').required('Reiquired'),
-      /*eslint-disable*/
       imagUrl: Yup.string().required('required').matches(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g, 'must be Url'),
       description: Yup.string().min(100, 'Min 100 Charecters Expected').max(totalCount, 'Too Long').required('Required')
     }),
