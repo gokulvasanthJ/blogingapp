@@ -15,7 +15,7 @@ function NavBar() {
           <Nav.Link onClick={()=>navigate("/manage")}>Manage</Nav.Link>
           <Nav.Link onClick={()=>navigate("/create")}>Create</Nav.Link>
 
-        </Nav>
+        </Nav> 
       </Container>
     </Navbar>
   </div>
