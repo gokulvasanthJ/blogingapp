@@ -41,7 +41,7 @@ function  BlogItem({blog}){
   return <div className="blog-wraper">
 
 <div className="blog-title">{blog.title}</div>
-<img src={blog.imagUrl} className="blog-image"/>
+<img src={blog.imagUrl} className="blog-image" alt=''/>
 <div className="blog-description">{blog.description}</div>
 
   </div>

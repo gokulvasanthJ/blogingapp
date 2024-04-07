@@ -46,7 +46,7 @@ function ManageBlogs() {
     try{
       let res = await axios.put(`${API_URL}/${id}`,{
       active_flag:status})
-      if (res. status ===200){
+      if (res.status===200){
         getData()
       }
     } catch (error){
